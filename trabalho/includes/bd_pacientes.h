@@ -15,7 +15,7 @@ typedef struct {
     int id;
     char cpf[15];
     char nome[100];
-    int idade;
+    unsigned char idade;
     char data[11];
 } Paciente;
 #pragma endregion
