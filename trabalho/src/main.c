@@ -110,8 +110,8 @@ void imprime_menu() {
  * @return EXIT_SUCCESS (0) se tudo ocorrer bem, ou EXIT_FAILURE (1) caso não consiga carregar pacientes.
  */
 int main() {
-    // Tenta carregar os pacientes do arquivo "./dados.csv"
-    Paciente *pacientes = bd_carregar_pacientes("./dados.csv");
+    // Tenta carregar os pacientes do arquivo "./bd_pacientes.csv"
+    Paciente *pacientes = bd_carregar_pacientes("./bd_pacientes.csv");
     if (!pacientes) {
         // Se não conseguiu carregar (arquivo não encontrado ou vazio), encerra com código de erro
         return EXIT_FAILURE;
