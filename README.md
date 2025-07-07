@@ -1,19 +1,22 @@
 # Sistema de Gerenciamento de Pacientes
 
-Este projeto implementa um sistema básico em C para gerenciamento de pacientes utilizando dados provenientes de um arquivo CSV. O sistema permite carregar, listar e pesquisar pacientes por nome ou CPF.
+Este projeto implementa um sistema básico em C para gerenciamento de pacientes utilizando dados provenientes de um arquivo CSV. O sistema permite carregar, listar, pesquisar, inserir, removere e atualizar pacientes.
 
 ## Estrutura do Projeto
 
-* `bd_pacientes.h` - Cabeçalho contendo definição da estrutura `Paciente` e protótipos das funções.
-* `bd_pacientes.c` - Implementação das funções relacionadas à manipulação dos dados dos pacientes.
+* `bd_pacientes.h` - Cabeçalho contendo definição da estrutura `Paciente` e `LinkedList` e protótipos das funções.
+* `bd_pacientes.c` - Implementação das funções relacionadas à manipulação dos dados dos pacientes e da lista encadeada.
 * `main.c` - Arquivo principal que interage com o usuário através de um menu.
-* `dados.csv` - Arquivo contendo os dados dos pacientes a serem carregados.
+* `bs_pacientes.csv` - Arquivo contendo os dados dos pacientes a serem carregados.
 
 ## Funcionalidades
 
 * **Carregamento de Dados**: lê pacientes de um arquivo CSV e os carrega em memória.
 * **Listagem de Pacientes**: exibe uma tabela com todos os pacientes carregados.
 * **Pesquisa por Nome/CPF**: permite buscar pacientes através de parte ou totalidade do nome ou CPF.
+* **Inserir novos Pacientes**: é possível cadastrar novos pacientes
+* **Remover Pacientes**: agora há a função de remover registros de pacientes.
+* **Atualizar Pacientes**: registros já existentes podem ser modificados
 
 ## Como Executar o Projeto
 
@@ -33,7 +36,7 @@ Execute o programa compilado com:
 ./programa
 ```
 
-Certifique-se de que o arquivo `dados.csv` esteja no mesmo diretório onde o programa será executado.
+Certifique-se de que o arquivo `bd_pacientes.csv` esteja no mesmo diretório onde o programa será executado.
 
 ## Formato do arquivo CSV
 
@@ -68,11 +71,29 @@ typedef struct {
 - idade: unsigned char seria o suficiente pois conseguiria armazenar até 255 anos, int foi escolhido por conveniência e similiradide da natureza dos dados
 - data: armazena datas no formato yyyy-mm-dd. O tamanho de vetor escolhido é o suficiente para armazenar todos os caracteres mais o \0
 
+```c
+typedef struct node {
+    struct node *next, prev;
+    Paciente *data;
+} Node;
+```
+- next: ponteiro para o próximo nó da lista
+- prev: ponteiro para o nó anterior
+- data: ponteiro para uma estrutura Paciente
+
+```c
+typedef struct {
+    Node *head, *tail
+    unsigned long long size;
+} LinkedList;
+```
+- head: ponteiro para o primeiro nó da lista
+- tail: ponteiro para o último nó da lista
+- size: tamanho da lista
 
 ## Configurações
 
 - O caminho do arquivo csv passado como parâmetro para a função bd_carregar_pacientes pode ser alterado caso desejado.
-- O macro QTD_PACIENTES no arquivo bd_pacientes.c deve representar a quantidade exata de registros no arquivo csv. Portanto altere conforme necessário.
 
 ## Modularização
 
